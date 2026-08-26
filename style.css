@@ -1,0 +1,207 @@
+/* Bericht49 – Kanalfarben aus engine/config.py:
+   Hintergrund #121a3a (BG_COLOR), Akzent #f7b731 (KANALGELB).
+   Kein Framework, keine Schriftart von fremden Servern, kein Skript. */
+
+:root {
+  --bg: #121a3a;
+  --bg-karte: #1a2450;
+  --akzent: #f7b731;
+  --text: #e8ecf8;
+  --text-leise: #a3adcd;
+  --linie: #2b3768;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.rahmen {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px 72px;
+}
+
+/* --- Kopf ------------------------------------------------------------- */
+
+header {
+  border-bottom: 1px solid var(--linie);
+  margin-bottom: 40px;
+}
+
+.kopf {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.marke {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+.marke:hover { color: var(--akzent); }
+
+.marke svg { display: block; flex: none; }
+
+nav {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+  font-size: 0.95rem;
+}
+
+nav a {
+  color: var(--text-leise);
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+  color: var(--akzent);
+}
+
+/* --- Text ------------------------------------------------------------- */
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 40px 0 12px;
+  color: var(--akzent);
+}
+
+h3 {
+  font-size: 1.02rem;
+  margin: 24px 0 8px;
+}
+
+.vorspann {
+  font-size: 1.1rem;
+  color: var(--text-leise);
+  margin: 0 0 32px;
+}
+
+p { margin: 0 0 16px; }
+
+ul { margin: 0 0 16px; padding-left: 22px; }
+li { margin-bottom: 8px; }
+
+a { color: var(--akzent); }
+
+strong { color: #fff; }
+
+/* --- Bausteine -------------------------------------------------------- */
+
+.karte {
+  background: var(--bg-karte);
+  border: 1px solid var(--linie);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 0 0 24px;
+}
+
+.karte p:last-child,
+.karte ul:last-child { margin-bottom: 0; }
+
+.hinweis {
+  border-left: 3px solid var(--akzent);
+  padding: 4px 0 4px 16px;
+  color: var(--text-leise);
+  margin: 0 0 24px;
+}
+
+/* Platzhalter, die der Betreiber noch eintragen muss. Sie sollen ins Auge
+   springen -- eine Datenschutzerklaerung ohne Verantwortlichen ist keine. */
+.platzhalter {
+  color: var(--akzent);
+  background: rgba(247, 183, 49, 0.1);
+  border-bottom: 1px dashed var(--akzent);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.94em;
+  white-space: nowrap;
+}
+
+.profile {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.profile li { margin: 0; }
+
+.profile a {
+  display: inline-block;
+  border: 1px solid var(--linie);
+  background: var(--bg-karte);
+  border-radius: 8px;
+  padding: 9px 16px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.profile a:hover {
+  border-color: var(--akzent);
+  color: var(--akzent);
+}
+
+.profile .handle {
+  display: block;
+  color: var(--text-leise);
+  font-size: 0.85rem;
+}
+
+.profile a:hover .handle { color: var(--akzent); }
+
+dl { margin: 0 0 16px; }
+dt { color: var(--text-leise); font-size: 0.9rem; margin-top: 12px; }
+dd { margin: 2px 0 0; }
+
+.stand {
+  color: var(--text-leise);
+  font-size: 0.9rem;
+}
+
+footer {
+  border-top: 1px solid var(--linie);
+  margin-top: 56px;
+  padding-top: 20px;
+  color: var(--text-leise);
+  font-size: 0.9rem;
+}
+
+footer a { color: var(--text-leise); }
+footer a:hover { color: var(--akzent); }
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  h1 { font-size: 1.6rem; }
+  nav { margin-left: 0; width: 100%; gap: 16px; }
+}
