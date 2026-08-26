@@ -19,21 +19,33 @@ GitHub Pages. Das Favicon steckt als Data-URI im HTML.
 Farben wie im Video (`engine/config.py` des Engine-Projekts):
 Hintergrund `#121a3a`, Akzent `#f7b731`.
 
-## Noch einzutragen
+## Angaben
 
-Alle offenen Stellen stehen im HTML als `<span class="platzhalter">[…]</span>`
-und werden auf der Seite gelb hinterlegt angezeigt – sie sind also nicht zu
-übersehen. Zu ersetzen sind:
+Betreiber, Anschrift, E-Mail und die zuständige Aufsichtsbehörde sind
+eingetragen (Stand 26.08.2026). Ändert sich etwas, steht es an diesen Stellen:
 
-- Vor- und Nachname des Betreibers (Impressum, Nutzungsbedingungen, Datenschutz)
-- Straße, Hausnummer, PLZ und Ort
-- E-Mail-Adresse
-- Bundesland für die zuständige Datenschutz-Aufsichtsbehörde
-- Stand-Datum auf `terms.html` und `privacy.html`
-- USt-IdNr.-Zeile im Impressum: eintragen oder streichen
+- `index.html` – Impressum (Betreiber, Anschrift, E-Mail, Verantwortlicher
+  nach § 18 Abs. 2 MStV) und der Kontaktabschnitt darüber
+- `terms.html` – § 1 (Betreiber mit Anschrift), § 8 (Kontakt), Stand-Datum
+- `privacy.html` – Abschnitt 1 (Verantwortlicher), Abschnitt 5
+  (Aufsichtsbehörde), Stand-Datum
+
+Eine USt-IdNr. gibt es nicht; die Zeile fehlt deshalb im Impressum. § 5 DDG
+verlangt sie nur, wenn eine vorhanden ist.
 
 Die Profil-Links zeigen auf YouTube, TikTok und Instagram, jeweils
 `@bericht49`. Wenn eine andere Plattform gemeint ist, in `index.html` ändern.
+
+## URL-Verifizierung
+
+`tiktokuu4xI6SZXcZCfO2uXDtDKjY7SUvLayIq.txt` im Wurzelverzeichnis ist die
+Signaturdatei für die URL-Prefix-Verifizierung im TikTok-Entwicklerportal
+(Prefix `https://flex-1313.github.io/bericht49-Site/`). Sie darf nicht
+verändert oder gelöscht werden, solange die App dort registriert ist.
+
+Für die Verifizierung gilt: nur die Adresse **mit** Schrägstrich am Ende
+benutzen. Ohne ihn antwortet GitHub Pages mit 301, und TikTok wertet eine
+Weiterleitung als ungültig.
 
 ## Vorschau
 
