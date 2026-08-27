@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anmeldecode – Bericht49</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23121a3a'/%3E%3Cpath d='M16 4c4 7 7 10 7 14a7 7 0 0 1-14 0c0-4 3-7 7-14z' fill='%23f7b731'/%3E%3Ccircle cx='16' cy='18' r='4.5' fill='%23fff'/%3E%3Ccircle cx='16' cy='18' r='2.4' fill='%23121a3a'/%3E%3C/svg%3E">
+<style>
+  main.rahmen { padding-top: 40px; }
+  #code {
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", Consolas,
+                 "Liberation Mono", monospace;
+    font-size: clamp(1.1rem, 4.2vw, 2rem);
+    line-height: 1.35;
+    word-break: break-all;
+    color: var(--akzent);
+    background: var(--bg-karte);
+    border: 1px solid var(--linie);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin: 0 0 18px;
+    user-select: all;
+  }
+  #code.leer { color: var(--text-leise); font-size: 1rem; word-break: normal; }
+  #melden { min-height: 1.5em; color: var(--akzent); font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kopf">
+    <a class="marke" href="index.html">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3c4.2 7.4 7.4 10.6 7.4 14.8a7.4 7.4 0 0 1-14.8 0C8.6 13.6 11.8 10.4 16 3z" fill="#f7b731"/>
+        <circle cx="16" cy="18.4" r="4.6" fill="#fff"/>
+        <circle cx="16" cy="18.4" r="2.4" fill="#121a3a"/>
+        <circle cx="17" cy="17.4" r="0.8" fill="#fff"/>
+      </svg>
+      Bericht49
+    </a>
+  </div>
+</header>
+
+<main class="rahmen">
+  <h1>Anmeldecode</h1>
+  <p class="vorspann">Diesen Code ins Terminal kopieren.</p>
+
+  <div id="code" class="leer">Kein Code in der Adresszeile.</div>
+
+  <div class="knoepfe" style="display:flex;gap:10px;flex-wrap:wrap">
+    <button id="kopieren" type="button" hidden>Kopieren</button>
+  </div>
+  <p id="melden" role="status" aria-live="polite"></p>
+
+  <p class="hinweis" id="fehler" hidden></p>
+
+  <p class="stand">
+    Die Seite wertet nur die Adresszeile aus. Nichts wird gespeichert, nichts
+    gesendet, keine Cookies – siehe <a href="privacy.html">Datenschutz</a>.
+  </p>
+</main>
+
+<script>
+(function () {
+  var felder = new URLSearchParams(window.location.search);
+  var code = felder.get('code');
+  var fehler = felder.get('error');
+  var kasten = document.getElementById('code');
+  var knopf = document.getElementById('kopieren');
+  var melden = document.getElementById('melden');
+
+  if (fehler) {
+    var hinweis = document.getElementById('fehler');
+    hinweis.hidden = false;
+    hinweis.textContent = 'Der Dienst meldet einen Fehler: ' + fehler
+      + (felder.get('error_description')
+         ? ' – ' + felder.get('error_description') : '');
+  }
+
+  if (!code) { return; }
+
+  kasten.textContent = code;
+  kasten.classList.remove('leer');
+  knopf.hidden = false;
+
+  knopf.addEventListener('click', function () {
+    function geschafft() { melden.textContent = 'Code kopiert.'; }
+    function gescheitert() {
+      melden.textContent = 'Kopieren ging nicht – bitte von Hand markieren.';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(geschafft, gescheitert);
+      return;
+    }
+    // Aelterer Weg, falls die Zwischenablage-API fehlt (kein HTTPS, alter
+    // Browser). Der Code steht ohnehin zum Markieren da.
+    try {
+      var hilfe = document.createElement('textarea');
+      hilfe.value = code;
+      document.body.appendChild(hilfe);
+      hilfe.select();
+      document.execCommand('copy');
+      document.body.removeChild(hilfe);
+      geschafft();
+    } catch (e) { gescheitert(); }
+  });
+})();
+</script>
+
+</body>
+</html>
